@@ -4,7 +4,7 @@ import styles from './style.module.css';
 const RunMapButtons = ({ changeYear, thisYear }: { changeYear: (_year: string) => void, thisYear: string }) => {
   const { years } = useActivities();
   const yearsButtons = years.slice();
-  yearsButtons.unshift('Total');
+  yearsButtons.push('Total');
 
   return (
     <ul className={styles.buttons}>
