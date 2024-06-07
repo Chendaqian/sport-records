@@ -22,8 +22,8 @@ const YearsStat = ({ year, onClick }: { year: string, onClick: (_year: string) =
           一种习惯，一种瘾。<br />
           钟情于骑行在路上的状态，<br />
           自由、未知、期待、惊奇，<br />
-          可以获得，也可以遗忘。”<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;––ChenDaqian
+          可以获得，也可以遗忘。”<br /><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;ChenDaqian
         </p>
       </section>
       <hr color="red" />
