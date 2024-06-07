@@ -48,8 +48,7 @@ const IS_CHINESE = true;
 const USE_ANIMATION_FOR_GRID = false;
 const CHINESE_INFO_MESSAGE = (yearLength: number, year: string): string => {
   const yearStr = year === 'Total' ? '所有' : ` ${year} `;
-  return `我用 Garmin 记录自己骑行 ${yearLength} 年了<br> - ${yearStr} 的数据<br><br>“骑行是一种生活方式，<br>一种习惯，一种瘾。<br>钟情于骑行在路上的状态，<br>自由、未知、期待、惊奇，<br>可以获得，也可以遗忘。”<br>––ChenDaqian`;
-
+  return `展示「${yearStr}」的数据`;
 };
 const ENGLISH_INFO_MESSAGE = (yearLength: number, year: string): string =>
   `Running Journey with ${yearLength} Years, the table shows year ${year} data`;
