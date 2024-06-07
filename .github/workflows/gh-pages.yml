@@ -1,4 +1,4 @@
-name: Publish GitHub Pages1
+name: Publish GitHub Pages
 
 # Controls when the action will run.
 on:
