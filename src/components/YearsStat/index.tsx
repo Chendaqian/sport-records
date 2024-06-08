@@ -15,15 +15,13 @@ const YearsStat = ({ year, onClick }: { year: string, onClick: (_year: string) =
     <div className="w-full lg:w-full pb-16 pr-16 lg:pr-16">
       <section className="pb-0">
         <p className="leading-relaxed">
-          {INFO_MESSAGE(years.length, year)}
+          数据来源：<b className='_b_corSienna'>Garmin540</b>，展示<b className='_b_corSienna'> {INFO_MESSAGE(years.length, year)} </b>数据。
           <br />
           <br />
-          “骑行是一种生活方式，<br />
-          一种习惯，一种瘾。<br />
-          钟情于骑行在路上的状态，<br />
-          自由、未知、期待、惊奇，<br />
-          可以获得，也可以遗忘。”<br /><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;ChenDaqian
+          “怀念过去是在时间的长河里刻舟求剑，<br />
+          展望未来是在前行的道路上望梅止渴。”<br /><br />
+          我想回到2016年那个夏天。<br /><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;甲辰·庚午·癸卯 <b className='_b_corSienna'>C.D.Q</b>
         </p>
       </section>
       <hr color="red" />

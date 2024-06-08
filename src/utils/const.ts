@@ -48,7 +48,7 @@ const IS_CHINESE = true;
 const USE_ANIMATION_FOR_GRID = false;
 const CHINESE_INFO_MESSAGE = (yearLength: number, year: string): string => {
   const yearStr = year === 'Total' ? '所有' : ` ${year} `;
-  return `展示「${yearStr}」数据 -> Garmin540`;
+  return `${yearStr}`;
 };
 const ENGLISH_INFO_MESSAGE = (yearLength: number, year: string): string =>
   `Running Journey with ${yearLength} Years, the table shows year ${year} data`;
@@ -59,9 +59,9 @@ const CHINESE_LOCATION_INFO_MESSAGE_FIRST =
 const CHINESE_LOCATION_INFO_MESSAGE_SECOND = '不要停下来，不要停下奔跑的脚步';
 
 const INFO_MESSAGE = IS_CHINESE ? CHINESE_INFO_MESSAGE : ENGLISH_INFO_MESSAGE;
-const FULL_MARATHON_RUN_TITLE = IS_CHINESE ? '长途' : 'Full Marathon';
-const HALF_MARATHON_RUN_TITLE = IS_CHINESE ? '小长途' : 'Half Marathon';
-const MORNING_RUN_TITLE = IS_CHINESE ? '清晨' : 'Morning';
+const FULL_MARATHON_RUN_TITLE = IS_CHINESE ? '全程马拉松' : 'Full Marathon';
+const HALF_MARATHON_RUN_TITLE = IS_CHINESE ? '半程马拉松' : 'Half Marathon';
+const MORNING_RUN_TITLE = IS_CHINESE ? '清晨1' : 'Morning';
 const MIDDAY_RUN_TITLE = IS_CHINESE ? '午间' : 'Midday';
 const AFTERNOON_RUN_TITLE = IS_CHINESE ? '午后' : 'Afternoon';
 const EVENING_RUN_TITLE = IS_CHINESE ? '傍晚' : 'Evening';

@@ -187,6 +187,36 @@ const geoJsonForMap = (): FeatureCollection<RPGeometry> => ({
     features: worldGeoJson.features.concat(chinaGeojson.features),
   })
 
+const colorFromType = (workoutType: string): string => {
+  switch (workoutType) {
+    case 'Run':
+      return RUN_COLOR;
+    case 'Trail Running':
+      return TRAIL_RUNNING_COLOR;
+    case 'Ride':
+    case 'Indoor Ride':
+      return RIDE_COLOR;
+    case 'VirtualRide':
+      return VIRTUAL_RIDE_COLOR;
+    case 'Hike':
+      return HIKE_COLOR;
+    case 'Rowing':
+      return ROWING_COLOR;
+    case 'Swim':
+      return SWIM_COLOR;
+    case 'RoadTrip':
+      return ROAD_TRIP_COLOR;
+    case 'Flight':
+      return FLIGHT_COLOR;
+    case 'Kayaking':
+      return KAYAKING_COLOR;
+    case 'Snowboard':
+    case 'Ski':
+      return SNOWBOARD_COLOR;
+    default:
+      return MAIN_COLOR;
+  }
+};
 const titleForRun = (run: Activity): string => {
   const runDistance = run.distance / 1000;
   const runHour = +run.start_date_local.slice(11, 13);
