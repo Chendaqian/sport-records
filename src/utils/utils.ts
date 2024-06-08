@@ -4,7 +4,23 @@ import { WebMercatorViewport } from 'viewport-mercator-project';
 import { chinaGeojson, RPGeometry } from '@/static/run_countries';
 import worldGeoJson from '@surbowl/world-geo-json-zh/world.zh.json';
 import { chinaCities } from '@/static/city';
-import { MAIN_COLOR, MUNICIPALITY_CITIES_ARR, NEED_FIX_MAP, RUN_TITLES } from './const';
+import {
+  MUNICIPALITY_CITIES_ARR,
+  NEED_FIX_MAP,
+  RUN_TITLES,
+  MAIN_COLOR,
+  RIDE_COLOR,
+  VIRTUAL_RIDE_COLOR,
+  HIKE_COLOR,
+  SWIM_COLOR,
+  ROWING_COLOR,
+  ROAD_TRIP_COLOR,
+  FLIGHT_COLOR,
+  RUN_COLOR,
+  KAYAKING_COLOR,
+  SNOWBOARD_COLOR,
+  TRAIL_RUNNING_COLOR,
+} from './const';
 import { FeatureCollection, LineString } from 'geojson';
 
 export type Coordinate = [number, number];
@@ -186,6 +202,38 @@ const geoJsonForMap = (): FeatureCollection<RPGeometry> => ({
     type: 'FeatureCollection',
     features: worldGeoJson.features.concat(chinaGeojson.features),
   })
+const titleForType = (type: string): string => {
+  switch (type) {
+    case 'Run':
+      return RUN_TITLES.RUN_TITLE;
+    case 'Trail Running':
+      return RUN_TITLES.TRAIL_RUN_TITLE;
+    case 'Ride':
+      return RUN_TITLES.RIDE_TITLE;
+    case 'Indoor Ride':
+      return RUN_TITLES.INDOOR_RIDE_TITLE;
+    case 'VirtualRide':
+      return RUN_TITLES.VIRTUAL_RIDE_TITLE;
+    case 'Hike':
+      return RUN_TITLES.HIKE_TITLE;
+    case 'Rowing':
+      return RUN_TITLES.ROWING_TITLE;
+    case 'Swim':
+      return RUN_TITLES.SWIM_TITLE;
+    case 'RoadTrip':
+      return RUN_TITLES.ROAD_TRIP_TITLE;
+    case 'Flight':
+      return RUN_TITLES.FLIGHT_TITLE;
+    case 'Kayaking':
+      return RUN_TITLES.KAYAKING_TITLE;
+    case 'Snowboard':
+      return RUN_TITLES.SNOWBOARD_TITLE;
+    case 'Ski':
+      return RUN_TITLES.SKI_TITLE;
+    default:
+      return RUN_TITLES.RUN_TITLE;
+  }
+}
 
 const colorFromType = (workoutType: string): string => {
   switch (workoutType) {
@@ -327,6 +375,7 @@ export {
   geoJsonForRuns,
   geoJsonForMap,
   titleForRun,
+  titleForType,
   filterYearRuns,
   filterCityRuns,
   filterTitleRuns,
@@ -334,6 +383,8 @@ export {
   sortDateFunc,
   sortDateFuncReverse,
   getBoundsForGeoData,
+ filterTypeRuns,
+  colorFromType,
   formatRunTime,
   convertMovingTime2Sec,
 };
