@@ -19,6 +19,7 @@ const Header = () => {
             <a
               key={i}
               href={n.url}
+              target='_blank'
               className="mr-3 text-lg lg:mr-4 lg:text-base"
             >
               {n.name}

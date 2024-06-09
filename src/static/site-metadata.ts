@@ -24,6 +24,10 @@ const data: ISiteMetadataResult = {
       url: 'https://chendaqian.github.io/',
     },
     {
+      name: 'Github',
+      url: 'https://github.com/ChenDaqian',
+    },
+    {
       name: 'Strava',
       url: 'https://www.strava.com/athletes/119165768',
     },
