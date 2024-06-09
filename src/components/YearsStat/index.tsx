@@ -20,7 +20,6 @@ const YearsStat = ({ year, onClick }: { year: string, onClick: (_year: string) =
           <br />
           “怀念过去是在时间的长河里刻舟求剑，<br />
           展望未来是在前行的道路上望梅止渴。”<br /><br />
-          我想回到2016年那个夏天。<br /><br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;甲辰·庚午·癸卯 <b className='_b_corSienna'>C.D.Q</b>
         </p>
       </section>
