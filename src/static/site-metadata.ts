@@ -10,10 +10,10 @@ interface ISiteMetadataResult {
 }
 
 const data: ISiteMetadataResult = {
-  siteTitle: 'LUCKEY',
+  siteTitle: 'Luckey',
   siteUrl: 'https://chendaqian.github.io/sport-records/',
   logo: 'https://avatars.githubusercontent.com/u/9456449?v=4',
-  description: 'LUCKEY Running',
+  description: 'Luckey Running',
   navLinks: [
     {
       name: 'Blog',

@@ -5,7 +5,7 @@ import useActivities from '@/hooks/useActivities';
 const LocationSummary = () => {
   const { years, countries, provinces, cities } = useActivities();
   return (
-    <div className="cursor-pointer">
+    <div className="_statForType_1nqem_9" id="allDiv">
       <section>
         {years ? <Stat value={`${years.length}`} description=" 年里我走过" /> : null}
         {countries ? <Stat value={countries.length} description=" 个国家" /> : null}
@@ -14,7 +14,7 @@ const LocationSummary = () => {
           <Stat value={Object.keys(cities).length} description=" 个城市" />
         ) : null}
       </section>
-      <hr color="red" />
+      <hr color='red'/>
     </div>
   );
 };

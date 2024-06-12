@@ -27,9 +27,8 @@ const RunTable = ({
   setRunIndex,
 }: IRunTableProperties) => {
   const [sortFuncInfo, setSortFuncInfo] = useState('');
-  // TODO refactor?
   const sortTypeFunc: SortFunc = (a, b) =>
-    sortFuncInfo === 'Type' ? a.type > b.type ? 1:-1 : b.type < a.type ? -1:1;
+    sortFuncInfo === 'Type' ? a.type > b.type ? 1 : -1 : b.type < a.type ? -1 : 1;
   const sortKMFunc: SortFunc = (a, b) =>
     sortFuncInfo === 'KM' ? a.distance - b.distance : b.distance - a.distance;
   const sortPaceFunc: SortFunc = (a, b) =>

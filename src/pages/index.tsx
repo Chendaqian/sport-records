@@ -8,7 +8,8 @@ import SVGStat from '@/components/SVGStat';
 import YearsStat from '@/components/YearsStat';
 import useActivities from '@/hooks/useActivities';
 import useSiteMetadata from '@/hooks/useSiteMetadata';
-import { IS_CHINESE } from '@/utils/const';
+import { INFO_MESSAGE } from '@/utils/const';
+
 import {
   Activity,
   IViewState,
@@ -25,6 +26,8 @@ import {
 } from '@/utils/utils';
 
 const Index = () => {
+  const { years } = useActivities();
+
   const { siteTitle } = useSiteMetadata();
   const { activities, thisYear } = useActivities();
   const [year, setYear] = useState('Total');
@@ -176,15 +179,25 @@ const Index = () => {
         <h1 className="my-12 text-5xl font-extrabold italic">
           <a href="/">{siteTitle}</a>
         </h1>
-        {(viewState.zoom ?? 0) <= 3 && IS_CHINESE ? (
-          <LocationStat
-            changeYear={changeYear}
-            changeCity={changeCity}
-            changeTitle={changeTitle}
-          />
-        ) : (
-          <YearsStat year={year} onClick={changeYear} />
-        )}
+        <div className='w-full lg:w-full pr-16 lg:pr-8'>
+          <section className="_statForType_1nqem_9">
+            <p className="leading-relaxed">
+              数据来源：<b className='_b_corSienna'>佳明540</b>，展示<b className='_b_corSienna'> {INFO_MESSAGE(years.length, year)} </b>数据。
+              <br />
+              <br />
+              “怀念过去是在时间的长河里刻舟求剑，<br />
+              展望未来是在前行的道路上望梅止渴。”<br /><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;甲辰·庚午·癸卯 <b className='_b_corSienna'>C.D.Q</b>
+            </p>
+            <hr color='red' />
+          </section>
+        </div>
+        <LocationStat
+          changeYear={changeYear}
+          changeCity={changeCity}
+          changeTitle={changeTitle}
+        />
+        <YearsStat year={year} onClick={changeYear} />
       </div>
       <div className="w-full lg:w-2/3">
         <RunMap
@@ -196,7 +209,16 @@ const Index = () => {
           thisYear={year}
         />
         {year === 'Total' ? (
-          <SVGStat />
+          <div>
+            <SVGStat />
+            <RunTable
+              runs={runs} // .slice(0, 30)
+              locateActivity={locateActivity}
+              setActivity={setActivity}
+              runIndex={runIndex}
+              setRunIndex={setRunIndex}
+            />
+          </div>
         ) : (
           <RunTable
             runs={runs}

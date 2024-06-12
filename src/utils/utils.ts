@@ -52,9 +52,8 @@ const titleForShow = (run: Activity): string => {
   if (run.name) {
     name = run.name;
   }
-  return `${name} ${date} ${distance} KM ${
-    !run.summary_polyline ? '(No map data for this run)' : ''
-  }`;
+  return `${name} ${date} ${distance} KM ${!run.summary_polyline ? '(No map data for this run)' : ''
+    }`;
 };
 
 const formatPace = (d: number): string => {
@@ -199,9 +198,9 @@ const geoJsonForRuns = (runs: Activity[]): FeatureCollection<LineString> => ({
 });
 
 const geoJsonForMap = (): FeatureCollection<RPGeometry> => ({
-    type: 'FeatureCollection',
-    features: worldGeoJson.features.concat(chinaGeojson.features),
-  })
+  type: 'FeatureCollection',
+  features: worldGeoJson.features.concat(chinaGeojson.features),
+})
 const titleForType = (type: string): string => {
   switch (type) {
     case 'Run':
@@ -229,6 +228,7 @@ const titleForType = (type: string): string => {
     case 'Snowboard':
       return RUN_TITLES.SNOWBOARD_TITLE;
     case 'Ski':
+    case 'BackcountrySki':
       return RUN_TITLES.SKI_TITLE;
     default:
       return RUN_TITLES.RUN_TITLE;
@@ -246,13 +246,15 @@ const colorFromType = (workoutType: string): string => {
       return RIDE_COLOR;
     case 'VirtualRide':
       return VIRTUAL_RIDE_COLOR;
-    case 'Hike':
+    case 'Hike': // 徒步旅行
       return HIKE_COLOR;
-    case 'Rowing':
+    case 'Rowing': // 划船
       return ROWING_COLOR;
     case 'Swim':
       return SWIM_COLOR;
     case 'RoadTrip':
+    case 'Walk':
+    case 'Workout':
       return ROAD_TRIP_COLOR;
     case 'Flight':
       return FLIGHT_COLOR;
@@ -260,6 +262,7 @@ const colorFromType = (workoutType: string): string => {
       return KAYAKING_COLOR;
     case 'Snowboard':
     case 'Ski':
+    case 'BackcountrySki':
       return SNOWBOARD_COLOR;
     default:
       return MAIN_COLOR;
@@ -268,12 +271,12 @@ const colorFromType = (workoutType: string): string => {
 const titleForRun = (run: Activity): string => {
   const runDistance = run.distance / 1000;
   const runHour = +run.start_date_local.slice(11, 13);
-  if (runDistance > 20 && runDistance < 40) {
+  /*if (runDistance > 20 && runDistance < 40) {
     return RUN_TITLES.HALF_MARATHON_RUN_TITLE;
-  }
-  if (runDistance >= 40) {
+  }*/
+  /*if (runDistance >= 40) {
     return RUN_TITLES.FULL_MARATHON_RUN_TITLE;
-  }
+  }*/
   if (runHour >= 0 && runHour <= 10) {
     return RUN_TITLES.MORNING_RUN_TITLE;
   }
@@ -383,7 +386,6 @@ export {
   sortDateFunc,
   sortDateFuncReverse,
   getBoundsForGeoData,
- filterTypeRuns,
   colorFromType,
   formatRunTime,
   convertMovingTime2Sec,

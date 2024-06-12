@@ -26,20 +26,32 @@ hr {
   border-color: #0003;
   margin: 2rem 0;
 }
+
 ._statForType_1nqem_9 {
   margin-top: 1rem;
   background-color: #2a2a2a;
   border-radius: 1.5rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }
 
-._difuni_div
-{
+._difuni_div {
   color: #17c0ec;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
-._b_corSienna
-{
+section .w-full.pb-2 {
+  cursor: pointer;
+}
+
+#allDiv section .w-full.pb-2 {
+  cursor: default;
+}
+
+._b_corSienna {
   color: Sienna;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
 }

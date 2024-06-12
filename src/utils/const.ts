@@ -135,6 +135,7 @@ const gold = 'rgb(242,190,69)';
 const purple = 'rgb(154,118,252)';
 const veryPeri = 'rgb(105,106,173)';//长春花蓝
 const red = 'rgb(255,0,0)';//大红色
+const Tiffany_Blue = 'rgb(129,216,208)';//大红色
 
 // If your map has an offset please change this line
 // issues #92 and #198
@@ -151,5 +152,5 @@ export const FLIGHT_COLOR = wpink;
 export const PROVINCE_FILL_COLOR = '#47b8e0';
 export const COUNTRY_FILL_COLOR = dark_vanilla;
 export const KAYAKING_COLOR = red;
-export const SNOWBOARD_COLOR = wpink;
+export const SNOWBOARD_COLOR = Tiffany_Blue;
 export const TRAIL_RUNNING_COLOR = IKB;
