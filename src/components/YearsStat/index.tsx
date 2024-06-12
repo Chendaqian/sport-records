@@ -12,8 +12,7 @@ const YearsStat = ({ year, onClick }: { year: string, onClick: (_year: string) =
 
   // for short solution need to refactor
   return (
-    <div className="w-full lg:w-full pb-4 pr-16 lg:pr-10">
-
+    <div className="w-full lg:w-full pb-16 pr-16 lg:pr-16">
       {yearsArrayUpdate.map((year) => (
         <YearStat key={year} year={year} onClick={onClick} />
       ))}

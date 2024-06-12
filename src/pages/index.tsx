@@ -179,7 +179,7 @@ const Index = () => {
         <h1 className="my-12 text-5xl font-extrabold italic">
           <a href="/">{siteTitle}</a>
         </h1>
-        <div className='w-full lg:w-full pr-16 lg:pr-8'>
+        <div className='w-full lg:w-full lg:pr-16'>
           <section className="_statForType_1nqem_9">
             <p className="leading-relaxed">
               数据来源：<b className='_b_corSienna'>佳明540</b>，展示<b className='_b_corSienna'> {INFO_MESSAGE(years.length, year)} </b>数据。
