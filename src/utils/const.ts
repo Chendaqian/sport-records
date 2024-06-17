@@ -4,6 +4,7 @@ const MAPBOX_TOKEN =
   // Instead, manually add a new token and apply URL restrictions.
   // (please refer to https://github.com/yihong0618/running_page/issues/643#issuecomment-2042668580)
   'pk.eyJ1IjoiY2hlbmRhcWlhbiIsImEiOiJjbHhkMzRkeHMwMXVwMnBwbzRyY3ppdzZnIn0.FynuffOpseq4bv7zoW5K-g';
+  
 const MUNICIPALITY_CITIES_ARR = [
   '北京市',
   '上海市',
