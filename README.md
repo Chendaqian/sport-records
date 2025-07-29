@@ -8,7 +8,7 @@
 ```bash
   python run_page/get_garmin_secret.py ${email} ${password}
   # if cn
-  python run_page/get_garmin_secret.py ${email} ${password} --is-cn
+  python  run_page/get_garmin_secret.py ${email} ${password} --is-cn
 ```
 
 <p align="center">
