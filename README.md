@@ -1,5 +1,8 @@
  ## Note
 
+see https://deepwiki.com/Chendaqian/sport-records
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Chendaqian/sport-records)
  
 1. clone or Fork before vercel 404 need to pull the latest code
 2. python3(python) in README means python3 python
