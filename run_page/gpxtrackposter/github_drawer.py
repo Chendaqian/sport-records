@@ -77,7 +77,7 @@ class GithubDrawer(TracksDrawer):
                 km_or_mi = "km"
             dr.add(
                 dr.text(
-                    f"{year}",
+                    f"{year} Running",
                     insert=offset.tuple(),
                     fill=self.poster.colors["text"],
                     dominant_baseline="hanging",
@@ -88,7 +88,7 @@ class GithubDrawer(TracksDrawer):
             dr.add(
                 dr.text(
                     f"{year_length} {km_or_mi}",
-                    insert=(offset.tuple()[0] + 165, offset.tuple()[1] + 5),
+                    insert=(offset.tuple()[0] + 165, offset.tuple()[1]),
                     fill=self.poster.colors["text"],
                     dominant_baseline="hanging",
                     style=year_length_style,

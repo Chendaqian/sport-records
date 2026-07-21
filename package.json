@@ -1,8 +1,8 @@
 {
-  "name": "yihong.run",
-  "description": "Yi hong",
+  "name": "sport-records",
+  "description": "Luckey Sport Records",
   "version": "1.0.0",
-  "author": "Yi Hong <zouzou0208@gmail.com>",
+  "author": "ChenDaqian <hi.world@outlook.com>",
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.0",
     "@mapbox/polyline": "^1.1.1",
@@ -29,7 +29,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "data:clean": "rm run_page/data.db {GPX,TCX,FIT}_OUT/* activities/* src/static/activities.json",
+    "data:clean": "node -e \"const{execSync}=require('child_process');['run_page/data.db','src/static/activities.json'].forEach(f=>{try{require('fs').unlinkSync(f)}catch(e){}});['GPX_OUT','TCX_OUT','FIT_OUT','activities'].forEach(d=>{try{require('fs').readdirSync(d).forEach(f=>require('fs').unlinkSync(d+'/'+f))}catch(e){}})\"",
     "data:download:garmin": "python3 run_page/garmin_sync.py",
     "data:analysis": "python3 run_page/gen_svg.py --from-db --type github --output assets/github.svg",
     "build": "vite build",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yihong0618/running_page"
+    "url": "https://github.com/Chendaqian/sport-records"
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.14",

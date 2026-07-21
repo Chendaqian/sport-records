@@ -52,8 +52,9 @@ const titleForShow = (run: Activity): string => {
   if (run.name) {
     name = run.name;
   }
-  return `${name} ${date} ${distance} KM ${!run.summary_polyline ? '(No map data for this run)' : ''
-    }`;
+  return `${name} ${date} ${distance} KM ${
+    !run.summary_polyline ? '(No map data for this run)' : ''
+  }`;
 };
 
 const formatPace = (d: number): string => {
@@ -200,7 +201,7 @@ const geoJsonForRuns = (runs: Activity[]): FeatureCollection<LineString> => ({
 const geoJsonForMap = (): FeatureCollection<RPGeometry> => ({
   type: 'FeatureCollection',
   features: worldGeoJson.features.concat(chinaGeojson.features),
-})
+});
 const titleForType = (type: string): string => {
   switch (type) {
     case 'Run':
@@ -233,7 +234,7 @@ const titleForType = (type: string): string => {
     default:
       return RUN_TITLES.RUN_TITLE;
   }
-}
+};
 
 const colorFromType = (workoutType: string): string => {
   switch (workoutType) {

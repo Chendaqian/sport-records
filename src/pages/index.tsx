@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import FixedNav from '@/components/FixedNav';
 import Layout from '@/components/Layout';
 import LocationStat from '@/components/LocationStat';
 import RunMap from '@/components/RunMap';
 import RunTable from '@/components/RunTable';
-import SVGStat from '@/components/SVGStat';
-import YearsStat from '@/components/YearsStat';
 import useActivities from '@/hooks/useActivities';
-import useSiteMetadata from '@/hooks/useSiteMetadata';
 import { INFO_MESSAGE } from '@/utils/const';
 
 import {
@@ -27,8 +25,6 @@ import {
 
 const Index = () => {
   const { years } = useActivities();
-
-  const { siteTitle } = useSiteMetadata();
   const { activities, thisYear } = useActivities();
   const [year, setYear] = useState('Total');
   const [runIndex, setRunIndex] = useState(-1);
@@ -40,6 +36,9 @@ const Index = () => {
   // for auto zoom
   const bounds = getBoundsForGeoData(geoData);
   const [intervalId, setIntervalId] = useState<number>();
+
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [resizeTrigger, setResizeTrigger] = useState(0);
 
   const [viewState, setViewState] = useState<IViewState>({
     ...bounds,
@@ -126,70 +125,47 @@ const Index = () => {
     setIntervalId(id);
   }, [runs]);
 
+  // parse ?year= param from annual page navigation
   useEffect(() => {
-    if (year !== 'Total') {
-      return;
+    const params = new URLSearchParams(window.location.search);
+    const yearParam = params.get('year');
+    if (yearParam && (yearParam === 'Total' || years.includes(yearParam))) {
+      window.history.replaceState({}, '', window.location.pathname);
+      changeYear(yearParam);
     }
-
-    let svgStat = document.getElementById('svgStat');
-    if (!svgStat) {
-      return;
-    }
-
-    const handleClick = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName.toLowerCase() === 'path') {
-        // Use querySelector to get the <desc> element and the <title> element.
-        const descEl = target.querySelector('desc');
-        if (descEl) {
-          // If the runId exists in the <desc> element, it means that a running route has been clicked.
-          const runId = Number(descEl.innerHTML);
-          if (!runId) {
-            return;
-          }
-          locateActivity([runId]);
-          return;
-        }
-
-        const titleEl = target.querySelector('title');
-        if (titleEl) {
-          // If the runDate exists in the <title> element, it means that a date square has been clicked.
-          const [runDate] = titleEl.innerHTML.match(
-            /\d{4}-\d{1,2}-\d{1,2}/
-          ) || [`${+thisYear + 1}`];
-          const runIDsOnDate = runs
-            .filter((r) => r.start_date_local.slice(0, 10) === runDate)
-            .map((r) => r.run_id);
-          if (!runIDsOnDate.length) {
-            return;
-          }
-          locateActivity(runIDsOnDate);
-        }
-      }
-    };
-    svgStat.addEventListener('click', handleClick);
-    return () => {
-      svgStat && svgStat.removeEventListener('click', handleClick);
-    };
-  }, [year]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout>
-      <div className="w-full lg:w-1/3">
-        <h1 className="my-12 text-5xl font-extrabold italic">
-          <a href="/">{siteTitle}</a>
-        </h1>
-        <div className='w-full lg:w-full lg:pr-16'>
+      <FixedNav
+        sidebarVisible={sidebarVisible}
+        onToggle={() => {
+          setSidebarVisible(!sidebarVisible);
+          setResizeTrigger((c) => c + 1);
+        }}
+      />
+      <div className={`w-full lg:w-1/3 ${sidebarVisible ? '' : 'hidden'}`}>
+        <div className="w-full lg:w-full lg:pr-16">
           <section className="_statForType_1nqem_9">
             <p className="leading-relaxed">
-              数据来源：<b className='_b_corSienna'>佳明540</b>，展示<b className='_b_corSienna'> {INFO_MESSAGE(years.length, year)} </b>数据。
+              数据来源：<b className="_b_corSienna">佳明540</b>，展示
+              <b className="_b_corSienna">
+                {' '}
+                {INFO_MESSAGE(years.length, year)}{' '}
+              </b>
+              数据。
               <br />
               <br />
-              “怀念过去是在时间的长河里刻舟求剑，<br />
-              展望未来是在前行的道路上望梅止渴。”<br /><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;甲辰·庚午·癸卯 <b className='_b_corSienna'>C.D.Q</b>
+              “怀念过去是在时间的长河里刻舟求剑，
+              <br />
+              展望未来是在前行的道路上望梅止渴。”
+              <br />
+              <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;––&nbsp;&nbsp;甲辰·庚午·癸卯{' '}
+              <b className="_b_corSienna">C.D.Q</b>
             </p>
-            <hr color='red' />
+            <hr color="red" />
           </section>
         </div>
         <LocationStat
@@ -197,9 +173,8 @@ const Index = () => {
           changeCity={changeCity}
           changeTitle={changeTitle}
         />
-        <YearsStat year={year} onClick={changeYear} />
       </div>
-      <div className="w-full lg:w-2/3">
+      <div className={`w-full ${sidebarVisible ? 'lg:w-2/3' : 'lg:w-full'}`}>
         <RunMap
           title={title}
           viewState={viewState}
@@ -207,27 +182,15 @@ const Index = () => {
           setViewState={setViewState}
           changeYear={changeYear}
           thisYear={year}
+          resizeTrigger={resizeTrigger}
         />
-        {year === 'Total' ? (
-          <div>
-            <SVGStat />
-            <RunTable
-              runs={runs} // .slice(0, 30)
-              locateActivity={locateActivity}
-              setActivity={setActivity}
-              runIndex={runIndex}
-              setRunIndex={setRunIndex}
-            />
-          </div>
-        ) : (
-          <RunTable
-            runs={runs}
-            locateActivity={locateActivity}
-            setActivity={setActivity}
-            runIndex={runIndex}
-            setRunIndex={setRunIndex}
-          />
-        )}
+        <RunTable
+          runs={runs}
+          locateActivity={locateActivity}
+          setActivity={setActivity}
+          runIndex={runIndex}
+          setRunIndex={setRunIndex}
+        />
       </div>
       {/* Enable Audiences in Vercel Analytics: https://vercel.com/docs/concepts/analytics/audiences/quickstart */}
       <Analytics />

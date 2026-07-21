@@ -9,6 +9,8 @@ import {
 import RunRow from './RunRow';
 import styles from './style.module.css';
 
+const PAGE_SIZE = 20;
+
 interface IRunTableProperties {
   runs: Activity[];
   locateActivity: (_runIds: RunIds) => void;
@@ -27,8 +29,16 @@ const RunTable = ({
   setRunIndex,
 }: IRunTableProperties) => {
   const [sortFuncInfo, setSortFuncInfo] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+
   const sortTypeFunc: SortFunc = (a, b) =>
-    sortFuncInfo === 'Type' ? a.type > b.type ? 1 : -1 : b.type < a.type ? -1 : 1;
+    sortFuncInfo === 'Type'
+      ? a.type > b.type
+        ? 1
+        : -1
+      : b.type < a.type
+        ? -1
+        : 1;
   const sortKMFunc: SortFunc = (a, b) =>
     sortFuncInfo === 'KM' ? a.distance - b.distance : b.distance - a.distance;
   const sortPaceFunc: SortFunc = (a, b) =>
@@ -54,9 +64,14 @@ const RunTable = ({
     ['KM', sortKMFunc],
     ['Pace', sortPaceFunc],
     ['BPM', sortBPMFunc],
-    ['Time', sortRunTimeFunc],
     ['Date', sortDateFuncClick],
+    ['Time', sortRunTimeFunc],
   ]);
+
+  const totalPages = Math.max(1, Math.ceil(runs.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const startIndex = (safePage - 1) * PAGE_SIZE;
+  const pagedRuns = runs.slice(startIndex, startIndex + PAGE_SIZE);
 
   const handleClick: React.MouseEventHandler<HTMLElement> = (e) => {
     const funcName = (e.target as HTMLElement).innerHTML;
@@ -65,6 +80,15 @@ const RunTable = ({
     setRunIndex(-1);
     setSortFuncInfo(sortFuncInfo === funcName ? '' : funcName);
     setActivity(runs.sort(f));
+    setCurrentPage(1);
+  };
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages) {
+      return;
+    }
+    setCurrentPage(page);
+    setRunIndex(-1);
   };
 
   return (
@@ -72,7 +96,7 @@ const RunTable = ({
       <table className={styles.runTable} cellSpacing="0" cellPadding="0">
         <thead>
           <tr>
-            <th />
+            <th>#</th>
             {Array.from(sortFuncMap.keys()).map((k) => (
               <th key={k} onClick={handleClick}>
                 {k}
@@ -81,10 +105,11 @@ const RunTable = ({
           </tr>
         </thead>
         <tbody>
-          {runs.map((run, elementIndex) => (
+          {pagedRuns.map((run, elementIndex) => (
             <RunRow
               key={run.run_id}
               elementIndex={elementIndex}
+              rowNumber={startIndex + elementIndex + 1}
               locateActivity={locateActivity}
               run={run}
               runIndex={runIndex}
@@ -93,6 +118,58 @@ const RunTable = ({
           ))}
         </tbody>
       </table>
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            className={styles.pageBtn}
+            disabled={safePage <= 1}
+            onClick={() => goToPage(safePage - 1)}
+          >
+            ‹
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter((p) => {
+              if (totalPages <= 7) {
+                return true;
+              }
+              return (
+                p === 1 ||
+                p === totalPages ||
+                (p >= safePage - 1 && p <= safePage + 1)
+              );
+            })
+            .map((p, i, arr) => {
+              const items: React.ReactNode[] = [];
+              if (i > 0 && p - arr[i - 1] > 1) {
+                items.push(
+                  <span key={`ellipsis-${p}`} className={styles.ellipsis}>
+                    …
+                  </span>
+                );
+              }
+              items.push(
+                <button
+                  key={p}
+                  className={`${styles.pageBtn} ${p === safePage ? styles.active : ''}`}
+                  onClick={() => goToPage(p)}
+                >
+                  {p}
+                </button>
+              );
+              return items;
+            })}
+          <button
+            className={styles.pageBtn}
+            disabled={safePage >= totalPages}
+            onClick={() => goToPage(safePage + 1)}
+          >
+            ›
+          </button>
+          <span className={styles.pageInfo}>
+            {runs.length} 条记录，第 {safePage}/{totalPages} 页
+          </span>
+        </div>
+      )}
     </div>
   );
 };

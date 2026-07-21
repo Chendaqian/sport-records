@@ -120,7 +120,10 @@ class Poster:
         if not self.drawer_type == "plain":
             self.__draw_header(d)
             self.__draw_footer(d)
-            self.__draw_tracks(d, XY(width - 20, height - 30 - 30), XY(10, 30))
+            if self.title:
+                self.__draw_tracks(d, XY(width - 20, height - 30 - 30), XY(10, 30))
+            else:
+                self.__draw_tracks(d, XY(width - 20, height - 30 - 5), XY(10, 5))
         else:
             self.__draw_tracks(d, XY(width - 20, height), XY(10, 0))
         d.save()

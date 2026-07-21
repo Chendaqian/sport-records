@@ -9,6 +9,7 @@ Fork of [yihong0618/running_page](https://github.com/yihong0618/running_page) â€
 ## Common Commands
 
 ### Frontend (Node/pnpm)
+
 ```bash
 pnpm develop          # Dev server (Vite)
 pnpm build            # Production build -> ./dist
@@ -18,6 +19,7 @@ pnpm ci               # check + lint + build (CI pipeline)
 ```
 
 ### Python Data Sync
+
 ```bash
 pip install -r requirements.txt
 
@@ -35,12 +37,14 @@ python run_page/gen_svg.py --from-db --type circular --use-localtime
 ```
 
 ### Python Linting
+
 ```bash
 pip install -r requirements-dev.txt
 black . --check       # Format check (used in CI across Python 3.9-3.12)
 ```
 
 ### Clean Data
+
 ```bash
 pnpm data:clean       # Removes data.db, GPX/TCX/FIT outputs, activities, activities.json
 ```
@@ -92,14 +96,14 @@ Path aliases: `@/*` -> `./src/*`, `@assets/*` -> `./assets/*`
 
 ### Key Data Files (generated, not hand-edited)
 
-| File | Purpose |
-|------|---------|
-| `run_page/data.db` | SQLite database of all activities |
-| `src/static/activities.json` | JSON export consumed by frontend |
-| `assets/github.svg` | GitHub-style heatmap poster |
-| `assets/grid.svg` | Grid poster |
-| `GPX_OUT/`, `TCX_OUT/`, `FIT_OUT/` | Downloaded activity files |
-| `config.yaml` | Optional credentials (copy from `config-example.yaml`) |
+| File                               | Purpose                                                |
+| ---------------------------------- | ------------------------------------------------------ |
+| `run_page/data.db`                 | SQLite database of all activities                      |
+| `src/static/activities.json`       | JSON export consumed by frontend                       |
+| `assets/github.svg`                | GitHub-style heatmap poster                            |
+| `assets/grid.svg`                  | Grid poster                                            |
+| `GPX_OUT/`, `TCX_OUT/`, `FIT_OUT/` | Downloaded activity files                              |
+| `config.yaml`                      | Optional credentials (copy from `config-example.yaml`) |
 
 ### Activity Types Supported
 

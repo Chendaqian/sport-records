@@ -20,3 +20,9 @@ _site/
 
 config.yaml
 .venv/
+
+# Logs
+logs/
+
+# Python cache directories
+__pycache__/

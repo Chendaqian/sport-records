@@ -6,7 +6,7 @@ on:
     - cron: '0 0 * * *'
   push:
     branches:
-      - master
+      - main
     paths:
       - run_page/nike_sync.py
       - run_page/nike_to_strava_sync.py

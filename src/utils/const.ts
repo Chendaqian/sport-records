@@ -4,7 +4,7 @@ const MAPBOX_TOKEN =
   // Instead, manually add a new token and apply URL restrictions.
   // (please refer to https://github.com/yihong0618/running_page/issues/643#issuecomment-2042668580)
   'pk.eyJ1IjoiY2hlbmRhcWlhbiIsImEiOiJjbHhkMzRkeHMwMXVwMnBwbzRyY3ppdzZnIn0.FynuffOpseq4bv7zoW5K-g';
-  
+
 const MUNICIPALITY_CITIES_ARR = [
   '北京市',
   '上海市',
@@ -134,9 +134,9 @@ const IKB = 'rgb(0,47,167)';
 const wpink = 'rgb(228,212,220)';
 const gold = 'rgb(242,190,69)';
 const purple = 'rgb(154,118,252)';
-const veryPeri = 'rgb(105,106,173)';//长春花蓝
-const red = 'rgb(255,0,0)';//大红色
-const Tiffany_Blue = 'rgb(129,216,208)';//大红色
+const veryPeri = 'rgb(105,106,173)'; //长春花蓝
+const red = 'rgb(255,0,0)'; //大红色
+const Tiffany_Blue = 'rgb(129,216,208)'; //大红色
 
 // If your map has an offset please change this line
 // issues #92 and #198

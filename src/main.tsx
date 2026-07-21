@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Index from './pages';
+import Posters from './pages/posters';
+import Annual from './pages/annual';
 import NotFound from './pages/404';
 import ReactGA from 'react-ga4';
 import {
@@ -21,6 +23,14 @@ const routes = createBrowserRouter(
     {
       path: '/',
       element: withOptionalGAPageTracking(<Index />),
+    },
+    {
+      path: '/posters',
+      element: withOptionalGAPageTracking(<Posters />),
+    },
+    {
+      path: '/annual',
+      element: withOptionalGAPageTracking(<Annual />),
     },
     {
       path: '*',

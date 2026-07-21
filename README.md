@@ -1,13 +1,13 @@
- ## Note
+## Note
 
 see https://deepwiki.com/Chendaqian/sport-records
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Chendaqian/sport-records)
- 
+
 1. clone or Fork before vercel 404 need to pull the latest code
 2. python3(python) in README means python3 python
 3. use v2.0 need change vercel setting from gatsby to vite
-4. 2023.09.26 garmin need secret_string(and in Actions)  get
+4. 2023.09.26 garmin need secret_string(and in Actions) get
 
 ```bash
   python run_page/get_garmin_secret.py ${email} ${password}
@@ -15,24 +15,25 @@ see https://deepwiki.com/Chendaqian/sport-records
   python  run_page/get_garmin_secret.py ${email} ${password} --is-cn
 ```
 
+> 🙏 **致谢**：本项目 Fork 自 [yihong0618/running_page](https://github.com/yihong0618/running_page)，感谢原作者 [@yihong0618](https://github.com/yihong0618) 的开源精神和精心打磨的代码。
+
 <p align="center">
   <img width="150" src="https://raw.githubusercontent.com/shaonianche/gallery/master/running_page/running_page_logo.png" />
 </p>
 
 <h3 align="center">
-  <a href="https://yihong.run"> Create a personal running home page </a>
+  <a href="https://chendaqian.github.io/sport-records/"> Luckey Running </a>
 </h3>
 
 <p align="center">
-  <a href="https://github.com/yihong0618/running_page/actions"><img src="https://github.com/yihong0618/running_page/actions/workflows/run_data_sync.yml/badge.svg" alt="Github Action"></a>
-  <a href="https://t.me/running_page"><img src="https://badgen.net/badge/icon/join?icon=telegram&amp;label=usergroup" alt="Chat on telegram"></a>
+  <a href="https://github.com/Chendaqian/sport-records/actions"><img src="https://github.com/Chendaqian/sport-records/actions/workflows/run_data_sync.yml/badge.svg" alt="Github Action"></a>
 </p>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/15976103/98808834-c02f1d80-2457-11eb-9a7c-70e91faa5e30.gif" alt="demo" width="800">
 </p>
 
-English | [简体中文](https://github.com/yihong0618/running_page/blob/master/README-CN.md) | [Wiki](https://mfydev.github.io/Running-Page-Wiki/)
+English | [简体中文](https://github.com/Chendaqian/sport-records/blob/main/README-CN.md) | [Wiki](https://mfydev.github.io/Running-Page-Wiki/)
 
 ## [Runner's Page Show](https://github.com/yihong0618/running_page/issues/12)
 
@@ -46,7 +47,7 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 | [zhubao315](https://github.com/zhubao315)         | <https://zhubao315.github.io/running>          | Strava      |
 | [shaonianche](https://github.com/shaonianche)     | <https://run.duanfei.org>                      | Strava      |
 | [yihong0618](https://github.com/yihong0618)       | <https://yihong.run>                           | Nike        |
-| [superleeyom](https://github.com/superleeyom)     | <https://running.leeyom.top>                   | Strava        |
+| [superleeyom](https://github.com/superleeyom)     | <https://running.leeyom.top>                   | Strava      |
 | [geekplux](https://github.com/geekplux)           | <https://activities.geekplux.com>              | Nike        |
 | [guanlan](https://github.com/guanlan)             | <https://grun.vercel.app>                      | Strava      |
 | [tuzimoe](https://github.com/tuzimoe)             | <https://run.tuzi.moe>                         | Nike        |
@@ -100,11 +101,12 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 | [PPZ](https://github.com/8824PPZ)                 | <https://run.dudubbbbbbbbb.top/>               | Strava      |
 | [Yer1k](https://github.com/Yer1k)                 | <https://running.yer1k.com/>                   | Strava      |
 | [AlienVision](https://github.com/weaming)         | <https://run.drink.cafe/>                      | Strava      |
-| [闻笑忘](https://wenxiaowan.com)                | <https://wenxiaowan.com>                       | 苹果健身     |
+| [闻笑忘](https://wenxiaowan.com)                  | <https://wenxiaowan.com>                       | 苹果健身    |
 | [Vensent](https://github.com/Vensent)             | <https://vensent.github.io/workouts_page/>     | Garmin      |
-| [Zeonsing](https://github.com/NoonieBao)             | <https://run.jogzeal.com/>     | Coros      |
+| [Zeonsing](https://github.com/NoonieBao)          | <https://run.jogzeal.com/>                     | Coros       |
 | [yaoper](https://github.com/yaoper)               | <https://running.yaoper.cn>                    | codoon      |
 | [laqieer](https://github.com/laqieer)             | <https://laqieer.github.io/running_page/>      | Strava      |
+
 </details>
 
 ## How it works
@@ -140,12 +142,13 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 - **[Garmin_to_Strava(Using Garmin Run, Strava backup data)](#garmin_to_strava)**
 - **[Strava_to_Garmin(Using Strava Run, Garmin backup data)](#strava_to_garmin)**
 - **[Coros](#Coros)**
+
 ## Download
 
 Clone or fork the repo.
 
 ```bash
-git clone https://github.com/yihong0618/running_page.git --depth=1
+git clone https://github.com/Chendaqian/sport-records.git --depth=1
 ```
 
 ## Installation and testing (node >= 16 python >= 3.8)
@@ -207,17 +210,17 @@ const MAPBOX_TOKEN =
 ```typescript
 siteMetadata: {
   siteTitle: 'Running Page', #website title
-  siteUrl: 'https://yihong.run', #website url
-  logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTtc69JxHNcmN1ETpMUX4dozAgAN6iPjWalQ&usqp=CAU', #logo img
+  siteUrl: 'https://yoursite.github.io/sport-records/', #website url
+  logo: 'https://avatars.githubusercontent.com/u/xxxxxx?v=4', #logo img
   description: 'Personal site and blog',
   navLinks: [
     {
       name: 'Blog', #navigation name
-      url: 'https://yihong.run/running', #navigation url
+      url: 'https://yoursite.com', #navigation url
     },
     {
       name: 'About',
-      url: 'https://github.com/yihong0618/running_page/blob/master/README-CN.md',
+      url: 'https://github.com/yourname',
     },
   ],
 },
@@ -408,7 +411,7 @@ python3(python) run_page/garmin_sync.py xxxxxxxxxxxxxx(secret_string)  --is-cn -
 <br>
 
 - If you only want to sync `type running` add args --only-run
-**The Python version must be >=3.10**
+  **The Python version must be >=3.10**
 
 #### Get Garmin CN Secret
 
@@ -725,8 +728,6 @@ ps: **when initializing for the first time, if you have a large amount of strava
 
 </details>
 
-
-
 ### Coros
 
 <details>
@@ -738,7 +739,7 @@ ps: **when initializing for the first time, if you have a large amount of strava
 python run_page/coros_sync.py 'your coros account' 'your coros password'
 ```
 
-#### Modify `run_data_sync.yml`  env.RUN_TYPE: _coros_
+#### Modify `run_data_sync.yml` env.RUN*TYPE: \_coros*
 
 #### Set the Coros account information in github action
 
@@ -755,7 +756,7 @@ python run_page/coros_sync.py 'your coros account' 'your coros password'
 <br>
 
 - Generate SVG data display
-- Display of results:[Click to view](https://raw.githubusercontent.com/yihong0618/running_page/master/assets/github.svg)、[Click to view](https://raw.githubusercontent.com/yihong0618/running_page/28fa801e4e30f30af5ae3dc906bf085daa137936/assets/grid.svg)
+- Display of results:[Click to view](https://raw.githubusercontent.com/Chendaqian/sport-records/main/assets/github.svg)、[Click to view](https://raw.githubusercontent.com/Chendaqian/sport-records/main/assets/grid.svg)
 
 ```
 python run_page/gen_svg.py --from-db --title "${{ env.TITLE }}" --type github --athlete "${{ env.ATHLETE }}" --special-distance 10 --special-distance2 20 --special-color yellow --special-color2 red --output assets/github.svg --use-localtime --min-distance 0.5
@@ -855,7 +856,7 @@ For more display effects, see:
 
 <br>
 
-Actions [source code](https://github.com/yihong0618/running_page/blob/master/.github/workflows/run_data_sync.yml)
+Actions [source code](https://github.com/Chendaqian/sport-records/blob/main/.github/workflows/run_data_sync.yml)
 The following steps need to be taken
 
 1. change to your app type and info
@@ -893,7 +894,7 @@ Take the keep app as an example. Close the app after running, and then automatic
 1. Get actions id (need to apply token)
 
 ```bash
-curl https://api.github.com/repos/yihong0618/running_page/actions/workflows -H "Authorization: token d8xxxxxxxxxx" # change to your config
+curl https://api.github.com/repos/Chendaqian/sport-records/actions/workflows -H "Authorization: token d8xxxxxxxxxx" # change to your config
 ```
 
 <center><img src="https://cdn.jujimeizuo.cn/blog/2023/10/get-action-id.jpg" alt="get-action-id"></center>

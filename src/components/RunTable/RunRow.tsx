@@ -1,15 +1,30 @@
-import { formatPace, colorFromType, titleForRun, formatRunTime, Activity, RunIds } from '@/utils/utils';
+import {
+  formatPace,
+  colorFromType,
+  titleForRun,
+  formatRunTime,
+  Activity,
+  RunIds,
+} from '@/utils/utils';
 import styles from './style.module.css';
 
 interface IRunRowProperties {
   elementIndex: number;
+  rowNumber: number;
   locateActivity: (_runIds: RunIds) => void;
   run: Activity;
   runIndex: number;
   setRunIndex: (_ndex: number) => void;
 }
 
-const RunRow = ({ elementIndex, locateActivity, run, runIndex, setRunIndex }: IRunRowProperties) => {
+const RunRow = ({
+  elementIndex,
+  rowNumber,
+  locateActivity,
+  run,
+  runIndex,
+  setRunIndex,
+}: IRunRowProperties) => {
   const distance = (run.distance / 1000.0).toFixed(2);
   const paceParts = run.average_speed ? formatPace(run.average_speed) : null;
   const heartRate = run.average_heartrate;
@@ -19,8 +34,8 @@ const RunRow = ({ elementIndex, locateActivity, run, runIndex, setRunIndex }: IR
     if (runIndex === elementIndex) {
       setRunIndex(-1);
       locateActivity([]);
-      return
-    };
+      return;
+    }
     setRunIndex(elementIndex);
     locateActivity([run.run_id]);
   };
@@ -32,6 +47,7 @@ const RunRow = ({ elementIndex, locateActivity, run, runIndex, setRunIndex }: IR
       onClick={handleClick}
       style={{ color: colorFromType(type) }}
     >
+      <td className={styles.rowNum}>{rowNumber}</td>
       <td>{run.name}</td>
       <td>{type}</td>
       <td>{distance}</td>

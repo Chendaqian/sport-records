@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import useSiteMetadata from '@/hooks/useSiteMetadata';
 
 const Header = () => {
-  const { logo, siteUrl, navLinks } = useSiteMetadata();
+  const { siteTitle, logo, siteUrl, navLinks } = useSiteMetadata();
 
   return (
     <>
@@ -19,14 +19,17 @@ const Header = () => {
             <a
               key={i}
               href={n.url}
-              target='_blank'
-              className="mr-3 text-lg lg:mr-4 lg:text-base"
+              target="_blank"
+              className="mr-3 text-lg lg:mr-4 lg:text-base" rel="noreferrer"
             >
               {n.name}
             </a>
           ))}
         </div>
       </nav>
+      <h1 className="my-6 pl-6 text-5xl font-extrabold italic lg:px-16">
+        <Link to="/">{siteTitle}</Link>
+      </h1>
     </>
   );
 };

@@ -1,17 +1,40 @@
-import { lazy, Suspense } from 'react';
+import { ComponentType, Suspense, useEffect, useState } from 'react';
 import Stat from '@/components/Stat';
 import useActivities from '@/hooks/useActivities';
 import { formatPace } from '@/utils/utils';
-import useHover from '@/hooks/useHover';
 import { yearStats } from '@assets/index';
 import { loadSvgComponent } from '@/utils/svgUtils';
 
-const YearStat = ({ year, onClick }: { year: string, onClick: (_year: string) => void }) => {
+const SvgContainer = ({ year }: { year: string }) => {
+  const [Svg, setSvg] = useState<ComponentType<any> | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    loadSvgComponent(yearStats, `./year_${year}.svg`).then((mod) => {
+      if (!cancelled) {
+        setSvg(() => mod.default);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [year]);
+
+  if (!Svg) {
+    return null;
+  }
+
+  return <Svg className="h-full w-full border-0 p-0" />;
+};
+
+const YearStat = ({
+  year,
+  onClick,
+}: {
+  year: string;
+  onClick?: (_year: string) => void;
+}) => {
   let { activities: runs, years } = useActivities();
-  // for hover
-  const [hovered, eventHandlers] = useHover();
-  // lazy Component
-  const YearSVG = lazy(() => loadSvgComponent(yearStats, `./year_${year}.svg`));
 
   if (years.includes(year)) {
     runs = runs.filter((run) => run.start_date_local.slice(0, 4) === year);
@@ -48,28 +71,29 @@ const YearStat = ({ year, onClick }: { year: string, onClick: (_year: string) =>
   const avgHeartRate = (heartRate / (runs.length - heartRateNullCount)).toFixed(
     0
   );
-  
+
   return (
     <div
-      className="_statForType_1nqem_9"
-      onClick={() => onClick(year)}
-      {...eventHandlers}
+      className="_statForType_1nqem_9 overflow-x-auto"
+      onClick={onClick ? () => onClick(year) : undefined}
     >
-      <section>
-        <Stat value={year} description=" Journey" className='_difuni_div' />
-        <Stat value={runs.length} description=" Runs" />
-        <Stat value={sumDistance} description=" KM" />
-        <Stat value={avgPace} description=" Avg Pace" />
-        <Stat value={`${streak} day`} description=" Streak" />
-        {hasHeartRate && (
-          <Stat value={avgHeartRate} description=" Avg Heart Rate" />
-        )}
-      </section>
-      {year !== 'Total' && hovered && (
-        <Suspense fallback="loading...">
-          <YearSVG className="my-4 h-4/6 w-4/6 border-0 p-0" />
-        </Suspense>
-      )}
+      <div>
+        <section className="relative inline-block">
+          <Stat value={year} description=" Journey" className="_difuni_div" />
+          <Stat value={runs.length} description=" Runs" />
+          <Stat value={sumDistance} description=" KM" />
+          <Stat value={avgPace} description=" Avg Pace" />
+          <Stat value={`${streak} day`} description=" Streak" />
+          {hasHeartRate && (
+            <Stat value={avgHeartRate} description=" Avg Heart Rate" />
+          )}
+          {year !== 'Total' && (
+            <div className="absolute left-[calc(100%+30px)] top-0 bottom-0 w-[350px] overflow-hidden">
+              <SvgContainer year={year} />
+            </div>
+          )}
+        </section>
+      </div>
       <hr color="red" />
     </div>
   );
