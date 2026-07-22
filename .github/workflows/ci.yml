@@ -1,3 +1,8 @@
+# CI - Code Check
+# ================
+# 触发：push / PR / 手动 workflow_dispatch
+# 流程：black --check 检查 Python 代码格式
+# 用途：确保代码风格一致
 name: CI
 
 on: [push, pull_request,workflow_dispatch]

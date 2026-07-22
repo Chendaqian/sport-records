@@ -1,3 +1,8 @@
+# Publish GitHub Pages
+# =====================
+# 触发：被 run_data_sync.yml 调用 / 手动 workflow_dispatch
+# 流程：pnpm build 构建前端 → 部署 dist/ 到 GitHub Pages
+# 用途：单独触发可以快速重新部署前端（不重新同步数据）
 name: Publish GitHub Pages
 
 # Controls when the action will run.

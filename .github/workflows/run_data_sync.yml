@@ -1,3 +1,9 @@
+# Run Data Sync
+# =============
+# 触发：每天 0 点 UTC 自动 / 手动 workflow_dispatch / push main 时
+# 流程：从 Garmin CN 拉新数据（GPX）→ 写入 data.db → 生成 activities.json
+#       → 生成所有 SVG（github/grid/circular/年度）→ 提交回仓库 → 触发 gh-pages.yml 部署
+# 关键配置：RUN_TYPE 决定数据来源（当前: garmin_cn）
 name: Run Data Sync
 
 on:
