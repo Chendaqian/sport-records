@@ -851,6 +851,21 @@ For more display effects, see:
 
 ## GitHub Actions
 
+本项目有三个 Workflow：
+
+| Workflow | 触发方式 | 作用 |
+|----------|----------|------|
+| `run_data_sync.yml` | 每天 UTC 0 点 / 手动 / push main | 从佳明 CN 同步数据 → 生成 SVG → 提交仓库 → 触发部署 |
+| `gh-pages.yml` | 被 run_data_sync 调用 / 手动 | pnpm build → 部署到 GitHub Pages |
+| `ci.yml` | push / PR | black 检查 Python 代码格式 |
+
+**调用链：** `run_data_sync.yml` → `gh-pages.yml` → 网站更新
+
+**数据源配置：** `run_data_sync.yml` 顶部 `RUN_TYPE` 环境变量：
+- `garmin_cn` — 佳明中国区（需 `GARMIN_SECRET_STRING_CN` secret）
+- `pass` — 跳过同步，仅生成 SVG + 部署
+- `strava` — Strava（已不可用，需付费订阅）
+
 <details>
 <summary> Modifying information in <code> GitHub Actions </code>  </summary>
 
