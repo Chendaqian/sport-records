@@ -25,7 +25,7 @@ on:
 
 env:
   # please change to your own config.
-  RUN_TYPE: pass # was: strava - Strava API now requires paid subscription
+  RUN_TYPE: garmin_cn # sync from Garmin China directly
   ATHLETE: Luckey
   TITLE: LUCEKY Running
   MIN_GRID_DISTANCE: 10 # change min distance here
