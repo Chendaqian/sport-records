@@ -90,10 +90,10 @@ const formatRunTime = (moving_time: string): string => {
 
 // for scroll to the map
 const scrollToMap = () => {
-  const el = document.querySelector('.fl.w-100.w-70-l');
+  const el = document.querySelector('.mapboxgl-map');
   const rect = el?.getBoundingClientRect();
   if (rect) {
-    window.scroll(rect.left + window.scrollX, rect.top + window.scrollY);
+    window.scrollTo({ top: rect.top + window.scrollY - 80, behavior: 'smooth' });
   }
 };
 
