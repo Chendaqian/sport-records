@@ -97,6 +97,7 @@ const RunTable = ({
         <thead>
           <tr>
             <th>#</th>
+            <th>Name</th>
             {Array.from(sortFuncMap.keys()).map((k) => (
               <th key={k} onClick={handleClick}>
                 {k}
