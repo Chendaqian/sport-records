@@ -146,7 +146,7 @@ const Index = () => {
         }}
       />
       <div className={`w-full lg:w-1/3 ${sidebarVisible ? '' : 'hidden'}`}>
-        <div className="w-full lg:w-full lg:pr-16">
+        <div className="w-full lg:max-w-[600px] lg:pr-16">
           <section className="_statForType_1nqem_9">
             <p className="leading-relaxed">
               数据来源：<b className="_b_corSienna">佳明540</b>，展示
