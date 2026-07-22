@@ -63,7 +63,7 @@ class Track:
             if os.path.getsize(file_name) == 0:
                 raise TrackLoadError("Empty GPX file")
             with open(file_name, "r", encoding="utf-8", errors="ignore") as file:
-                self._load_gpx_data(mod_gpxpy.parse(file))
+                self._load_gpx_data(mod_gpxpy.parse(file.read()))
         except Exception as e:
             print(
                 f"Something went wrong when loading GPX. for file {self.file_names[0]}, we just ignore this file and continue"

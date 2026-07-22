@@ -3,6 +3,9 @@
 .cache
 *.pyc
 node_modules
+GPX_OUT/
+TCX_OUT/
+FIT_OUT/
 yarn-error.log
 
 # Build directory
