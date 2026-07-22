@@ -14,16 +14,10 @@
 
   :is(thead) {
     color: rgb(204, 204, 204);
-    text-align: right;
+    text-align: center;
 
     :is(th) {
       padding: 0.5rem;
-
-      &:nth-child(1),
-      &:nth-child(2),
-      &:nth-child(8) {
-        text-align: center;
-      }
     }
   }
 }
@@ -39,11 +33,7 @@
   :is(td) {
     padding: 0.5rem;
     border: 0;
-    text-align: right;
-
-    &:first-child {
-      text-align: left;
-    }
+    text-align: center;
   }
 
   &:nth-child(even) {
@@ -65,14 +55,12 @@
   color: red;
 }
 
+.nameCol {
+}
+
 .rowNum {
   color: rgb(102, 102, 102);
   font-size: 0.75rem;
-  text-align: center !important;
-}
-
-.nameCol {
-  text-align: center !important;
 }
 
 .tableContainer {
@@ -82,11 +70,6 @@
 
 .runDate {
   color: rgb(204, 204, 204);
-  text-align: center !important;
-}
-
-.runTime {
-  text-align: center !important;
 }
 
 .pagination {
