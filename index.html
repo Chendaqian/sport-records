@@ -17,6 +17,19 @@
       <p>Copyright © 2024 C.D.Q</p>
     </div>
   </footer>
+  <script>
+    // SPA fallback: restore path from 404 redirect
+    (function() {
+      var redirect = sessionStorage.getItem('redirect');
+      if (redirect) {
+        sessionStorage.removeItem('redirect');
+        var url = redirect.replace('/sport-records', '');
+        if (url) {
+          history.replaceState(null, '', url);
+        }
+      }
+    })();
+  </script>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
