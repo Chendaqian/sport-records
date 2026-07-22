@@ -30,9 +30,11 @@ const SvgContainer = ({ year }: { year: string }) => {
 const YearStat = ({
   year,
   onClick,
+  children,
 }: {
   year: string;
   onClick?: (_year: string) => void;
+  children?: React.ReactNode;
 }) => {
   let { activities: runs, years } = useActivities();
 
@@ -94,6 +96,7 @@ const YearStat = ({
           )}
         </section>
       </div>
+      {children}
       <hr color="red" />
     </div>
   );

@@ -37,8 +37,9 @@ const Annual = () => {
       <div className="w-full">
         {displayYears.map((year) => (
           <div key={year} className="mb-8">
-            <YearStat year={year} />
-            {year !== 'Total' && <GithubYearSvg year={year} />}
+            <YearStat year={year}>
+              {year !== 'Total' && <GithubYearSvg year={year} />}
+            </YearStat>
           </div>
         ))}
       </div>
