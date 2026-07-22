@@ -48,12 +48,12 @@ const RunRow = ({
       style={{ color: colorFromType(type) }}
     >
       <td className={styles.rowNum}>{rowNumber}</td>
-      <td>{run.name}</td>
+      <td className={styles.nameCol}>{run.name}</td>
       <td>{type}</td>
       <td>{distance}</td>
       {paceParts && <td>{paceParts}</td>}
       <td>{heartRate && heartRate.toFixed(0)}</td>
-      <td>{runTime}</td>
+      <td className={styles.runTime}>{runTime}</td>
       <td className={styles.runDate}>{run.start_date_local}</td>
     </tr>
   );
