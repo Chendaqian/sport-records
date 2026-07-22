@@ -24,6 +24,12 @@
 
 .runRow {
   cursor: pointer;
+  border-left: 2px solid transparent;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    padding-left 0.15s;
+
   :is(td) {
     padding: 0.5rem;
     border: 0;
@@ -35,8 +41,18 @@
     }
   }
 
+  &:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  &:nth-child(odd) {
+    background: transparent;
+  }
+
   &:hover {
-    background-color: lighten(rgb(26, 26, 26), 3%);
+    background: rgba(224, 237, 94, 0.08) !important;
+    border-left-color: rgb(224, 237, 94);
+    padding-left: 4px;
   }
 }
 
