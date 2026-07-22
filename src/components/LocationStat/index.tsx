@@ -18,7 +18,7 @@ const LocationStat = ({
   changeCity,
   changeTitle,
 }: ILocationStatProps) => (
-  <div className="w-full">
+  <div className="w-full lg:max-w-[600px] lg:pr-16">
     <LocationSummary />
     <CitiesStat onClick={changeCity} />
     <PeriodStat onClick={changeTitle} />
