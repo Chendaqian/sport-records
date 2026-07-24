@@ -4,6 +4,17 @@ see https://deepwiki.com/Chendaqian/sport-records
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Chendaqian/sport-records)
 
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-4-646CFF?logo=vite)](https://vitejs.dev/)
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?logo=python)](https://www.python.org/)
+[![Mapbox](https://img.shields.io/badge/Mapbox-GL%202-000000?logo=mapbox)](https://www.mapbox.com/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
+[![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions)](https://github.com/Chendaqian/sport-records/actions)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel)](https://vercel.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/Chendaqian/sport-records?style=flat)](https://github.com/Chendaqian/sport-records/stargazers)
+
 1. clone or Fork before vercel 404 need to pull the latest code
 2. python3(python) in README means python3 python
 3. use v2.0 need change vercel setting from gatsby to vite
@@ -1015,3 +1026,13 @@ Just enjoy it~
   ```bash
   if [ "$VERCEL_GIT_COMMIT_REF" != "gh-pages" ]; then exit 1; else exit 0;
   ```
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=Chendaqian%2Fsport-records&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&legend=top-left" />
+ </picture>
+</a>
