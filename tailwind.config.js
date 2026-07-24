@@ -15,7 +15,20 @@ export default {
         'sans-serif',
       ],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'theme-bg': 'var(--color-bg)',
+        'theme-card': 'var(--color-card)',
+        'theme-text': 'var(--color-text)',
+        'theme-text-secondary': 'var(--color-text-secondary)',
+        'theme-text-muted': 'var(--color-text-muted)',
+        'theme-text-muted-light': 'var(--color-text-muted-light)',
+        'theme-border': 'var(--color-border)',
+        'theme-accent': 'var(--color-accent)',
+        'theme-button-text': 'var(--color-button-text)',
+        'theme-hover-bg': 'var(--color-hover-bg)',
+      },
+    },
   },
   plugins: [],
 };

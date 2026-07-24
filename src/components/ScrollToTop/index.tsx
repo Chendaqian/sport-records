@@ -11,7 +11,7 @@ const getScrollTop = (): number => {
   );
 };
 
-const ScrollToTop = () => {
+const ScrollToTop = ({ btnClass }: { btnClass: string }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -47,14 +47,14 @@ const ScrollToTop = () => {
     document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const visibilityClass = visible
+    ? 'opacity-100'
+    : 'pointer-events-none opacity-0';
+
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed left-4 top-[224px] z-50 flex h-10 w-10 items-center justify-center rounded
-        border border-[rgb(224,237,94)] text-[rgb(224,237,94)]
-        transition-all duration-300
-        ease-in-out hover:bg-white/20 hover:text-white
-        ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+      className={`${btnClass} top-[224px] transition-all duration-300 ease-in-out ${visibilityClass}`}
       aria-label="滚动到顶部"
       title="滚动到顶部"
     >

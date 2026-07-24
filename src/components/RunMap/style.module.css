@@ -22,11 +22,11 @@
   margin-top: 0.1rem;
   font-size: 1rem;
   text-align: center;
-  color: white;
+  color: var(--color-button-text);
 }
 
 .selected {
-  color: rgb(224, 237, 94);
+  color: var(--color-accent);
 }
 
 .runTitle {

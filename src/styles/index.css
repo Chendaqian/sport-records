@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── 暗色主题 CSS 自定义属性 ── */
+:root {
+  --color-bg: rgb(26, 26, 26);
+  --color-card: #2a2a2a;
+  --color-text: rgb(224, 237, 94);
+  --color-text-secondary: rgb(204, 204, 204);
+  --color-text-muted: rgb(102, 102, 102);
+  --color-text-muted-light: rgb(136, 136, 136);
+  --color-border: rgb(68, 68, 68);
+  --color-accent: rgb(224, 237, 94);
+  --color-hover-bg: rgba(255, 255, 255, 0.05);
+  --color-table-stripe: rgba(255, 255, 255, 0.03);
+  --color-table-hover: rgba(224, 237, 94, 0.08);
+  --color-page-btn-bg: rgb(26, 26, 26);
+  --color-page-btn-hover-bg: rgb(45, 45, 45);
+  --color-page-btn-active: rgb(200, 60, 60);
+  --color-page-btn-text: rgb(204, 204, 204);
+  --color-page-btn-border-hover: rgb(102, 102, 102);
+  --color-hr: rgba(255, 255, 255, 0.1);
+  --color-sienna: #cd853f;
+  --color-button-text: white;
+  --color-page-info: rgb(136, 136, 136);
+}
+
 img::selection {
   background: transparent;
 }
@@ -23,15 +47,24 @@ iframe {
 hr {
   border-top: none;
   border-bottom: 1px solid;
-  border-color: #0003;
-  margin: 2rem 0;
+  border-color: var(--color-hr);
+  margin: 1rem 0;
 }
 
 ._statForType_1nqem_9 {
   margin-top: 1rem;
-  background-color: #2a2a2a;
-  border-radius: 1.5rem;
-  padding: 1rem 2rem;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 1rem 1rem 0;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+._statForType_1nqem_9:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 16px rgba(224, 237, 94, 0.08);
 }
 
 ._difuni_div {
@@ -48,7 +81,7 @@ section .w-full.pb-2 {
 }
 
 ._b_corSienna {
-  color: Sienna;
+  color: var(--color-sienna);
 }
 
 hr {

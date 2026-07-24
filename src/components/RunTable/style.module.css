@@ -13,11 +13,20 @@
   margin: 2rem 0 5rem 0;
 
   :is(thead) {
-    color: rgb(204, 204, 204);
+    color: var(--color-text-muted);
     text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
 
     :is(th) {
-      padding: 0.5rem;
+      padding: 0.6rem 0.5rem;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    :is(th):hover {
+      color: var(--color-accent);
     }
   }
 }
@@ -37,7 +46,7 @@
   }
 
   &:nth-child(even) {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--color-table-stripe);
   }
 
   &:nth-child(odd) {
@@ -45,8 +54,8 @@
   }
 
   &:hover {
-    background: rgba(224, 237, 94, 0.08) !important;
-    border-left-color: rgb(224, 237, 94);
+    background: var(--color-table-hover) !important;
+    border-left-color: var(--color-accent);
     padding-left: 4px;
   }
 }
@@ -59,7 +68,7 @@
 }
 
 .rowNum {
-  color: rgb(102, 102, 102);
+  color: var(--color-text-muted);
   font-size: 0.75rem;
 }
 
@@ -69,7 +78,7 @@
 }
 
 .runDate {
-  color: rgb(204, 204, 204);
+  color: var(--color-text-secondary);
 }
 
 .pagination {
@@ -86,10 +95,10 @@
   min-width: 2rem;
   height: 2rem;
   padding: 0 0.5rem;
-  border: 1px solid rgb(68, 68, 68);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: rgb(26, 26, 26);
-  color: rgb(204, 204, 204);
+  background: var(--color-page-btn-bg);
+  color: var(--color-page-btn-text);
   font-size: 0.875rem;
   cursor: pointer;
   transition:
@@ -97,8 +106,8 @@
     border-color 0.15s;
 
   &:hover:not(:disabled):not(.active) {
-    background: rgb(45, 45, 45);
-    border-color: rgb(102, 102, 102);
+    background: var(--color-page-btn-hover-bg);
+    border-color: var(--color-page-btn-border-hover);
   }
 
   &:disabled {
@@ -108,8 +117,8 @@
 }
 
 .active {
-  background: rgb(200, 60, 60);
-  border-color: rgb(200, 60, 60);
+  background: var(--color-page-btn-active);
+  border-color: var(--color-page-btn-active);
   color: #fff;
   font-weight: 600;
 }
@@ -120,11 +129,11 @@
   justify-content: center;
   min-width: 2rem;
   height: 2rem;
-  color: rgb(136, 136, 136);
+  color: var(--color-text-muted-light);
 }
 
 .pageInfo {
   margin-left: 1rem;
-  color: rgb(136, 136, 136);
+  color: var(--color-text-muted-light);
   font-size: 0.8rem;
 }

@@ -9,12 +9,15 @@ interface FixedNavProps {
 const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
   const isToggleMode = !!onToggle;
 
+  const btnClass =
+    'fixed left-4 z-50 flex h-10 w-10 items-center justify-center rounded border border-theme-accent text-theme-accent transition-colors hover:bg-white/20 hover:text-white';
+
   return (
     <>
       {isToggleMode ? (
         <button
           onClick={onToggle}
-          className="fixed left-4 top-20 z-50 flex h-10 w-10 items-center justify-center rounded border border-[rgb(224,237,94)] text-[rgb(224,237,94)] transition-colors hover:bg-white/20 hover:text-white"
+          className={`${btnClass} top-20`}
           aria-label={sidebarVisible ? '折叠侧边栏' : '展开侧边栏'}
           title={sidebarVisible ? '折叠侧边栏' : '展开侧边栏'}
         >
@@ -35,7 +38,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
       ) : (
         <Link
           to="/"
-          className="fixed left-4 top-20 z-50 flex h-10 w-10 items-center justify-center rounded border border-[rgb(224,237,94)] text-[rgb(224,237,94)] transition-colors hover:bg-white/20 hover:text-white"
+          className={`${btnClass} top-20`}
           title="返回首页"
         >
           <svg
@@ -55,7 +58,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
       )}
       <Link
         to="/posters"
-        className="fixed left-4 top-[128px] z-50 flex h-10 w-10 items-center justify-center rounded border border-[rgb(224,237,94)] text-[rgb(224,237,94)] transition-colors hover:bg-white/20 hover:text-white"
+        className={`${btnClass} top-[128px]`}
         title="年度海报"
       >
         <svg
@@ -75,7 +78,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
       </Link>
       <Link
         to="/annual"
-        className="fixed left-4 top-[176px] z-50 flex h-10 w-10 items-center justify-center rounded border border-[rgb(224,237,94)] text-[rgb(224,237,94)] transition-colors hover:bg-white/20 hover:text-white"
+        className={`${btnClass} top-[176px]`}
         title="年度回顾"
       >
         <svg
@@ -94,7 +97,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
           <line x1="20" y1="20" x2="20" y2="10" />
         </svg>
       </Link>
-      <ScrollToTop />
+      <ScrollToTop btnClass={btnClass} />
     </>
   );
 };

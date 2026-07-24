@@ -7,7 +7,7 @@ const HamburgerMenu = ({ isOpen, onToggle }: HamburgerMenuProps) => {
   return (
     <button
       onClick={onToggle}
-      className="fixed left-4 top-20 z-50 flex h-10 w-10 items-center justify-center rounded border border-[rgb(224,237,94)] text-[rgb(224,237,94)] transition-colors hover:bg-white/20 hover:text-white"
+      className="fixed left-4 top-20 z-50 flex h-10 w-10 items-center justify-center rounded border border-theme-accent text-theme-accent transition-colors hover:bg-white/20 hover:text-white"
       aria-label={isOpen ? '折叠侧边栏' : '展开侧边栏'}
       title={isOpen ? '折叠侧边栏' : '展开侧边栏'}
     >
