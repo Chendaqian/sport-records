@@ -12,7 +12,11 @@ const Posters = () => (
     <FixedNav />
     <div className="w-full">
       <Suspense
-        fallback={<div className="text-center text-theme-text-muted-light">Loading...</div>}
+        fallback={
+          <div className="text-center text-theme-text-muted-light">
+            Loading...
+          </div>
+        }
       >
         <GridSvg className="mb-8 h-auto w-full" />
         <GithubSvg className="mb-8 h-auto w-full" />

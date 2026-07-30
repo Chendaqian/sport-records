@@ -90,7 +90,7 @@ const YearStat = ({
             <Stat value={avgHeartRate} description=" Avg Heart Rate" />
           )}
           {year !== 'Total' && (
-            <div className="absolute left-[calc(100%+30px)] top-0 bottom-0 w-[350px] overflow-hidden">
+            <div className="absolute bottom-0 left-[calc(100%+30px)] top-0 w-[350px] overflow-hidden">
               <SvgContainer year={year} />
             </div>
           )}

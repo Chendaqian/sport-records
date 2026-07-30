@@ -14,9 +14,7 @@ const GithubYearSvg = ({ year }: { year: string }) => {
     return null;
   }
 
-  const SvgComponent = lazy(() =>
-    loadSvgComponent(githubYearStats, path)
-  );
+  const SvgComponent = lazy(() => loadSvgComponent(githubYearStats, path));
 
   return (
     <Suspense fallback={null}>

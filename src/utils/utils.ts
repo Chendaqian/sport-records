@@ -93,7 +93,10 @@ const scrollToMap = () => {
   const el = document.querySelector('.mapboxgl-map');
   const rect = el?.getBoundingClientRect();
   if (rect) {
-    window.scrollTo({ top: rect.top + window.scrollY - 80, behavior: 'smooth' });
+    window.scrollTo({
+      top: rect.top + window.scrollY - 80,
+      behavior: 'smooth',
+    });
   }
 };
 
