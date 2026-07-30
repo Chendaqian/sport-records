@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ScrollToTop from '@/components/ScrollToTop';
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface FixedNavProps {
   sidebarVisible?: boolean;
@@ -10,7 +11,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
   const isToggleMode = !!onToggle;
 
   const btnClass =
-    'fixed left-4 z-50 flex h-10 w-10 items-center justify-center rounded border border-theme-accent text-theme-accent transition-colors hover:bg-white/20 hover:text-white';
+    'fixed left-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-theme-border bg-theme-card text-theme-accent shadow-md transition-all duration-200 hover:border-theme-accent hover:shadow-lg hover:scale-105';
 
   return (
     <>
@@ -36,11 +37,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
           </svg>
         </button>
       ) : (
-        <Link
-          to="/"
-          className={`${btnClass} top-20`}
-          title="返回首页"
-        >
+        <Link to="/" className={`${btnClass} top-20`} title="返回首页">
           <svg
             width="22"
             height="22"
@@ -56,11 +53,8 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
           </svg>
         </Link>
       )}
-      <Link
-        to="/posters"
-        className={`${btnClass} top-[128px]`}
-        title="年度海报"
-      >
+      <ThemeToggle className={`${btnClass} top-[121px]`} />
+      <Link to="/posters" className={`${btnClass} top-[162px]`} title="年度海报">
         <svg
           width="22"
           height="22"
@@ -76,11 +70,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
           <rect x="14" y="14" width="7" height="7" />
         </svg>
       </Link>
-      <Link
-        to="/annual"
-        className={`${btnClass} top-[176px]`}
-        title="年度回顾"
-      >
+      <Link to="/annual" className={`${btnClass} top-[203px]`} title="年度回顾">
         <svg
           width="22"
           height="22"

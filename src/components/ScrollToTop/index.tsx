@@ -54,7 +54,7 @@ const ScrollToTop = ({ btnClass }: { btnClass: string }) => {
   return (
     <button
       onClick={scrollToTop}
-      className={`${btnClass} top-[224px] transition-all duration-300 ease-in-out ${visibilityClass}`}
+      className={`${btnClass} top-[244px] transition-all duration-300 ease-in-out ${visibilityClass}`}
       aria-label="滚动到顶部"
       title="滚动到顶部"
     >

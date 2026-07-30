@@ -2,30 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── 暗色主题 CSS 自定义属性 ── */
+/* ── Light Theme (Default) ── */
 :root {
-  --color-bg: rgb(26, 26, 26);
+  --color-bg: #f7f4ef;
+  --color-surface: #fbf9f5;
+  --color-card: #ffffff;
+  --color-text: #1f2421;
+  --color-text-secondary: #5c635d;
+  --color-text-muted: #858b85;
+  --color-text-muted-light: #9da39d;
+  --color-border: #e7e1d7;
+  --color-accent: #c4612f;
+  --color-accent-hover: #a94e22;
+  --color-accent-light: #f2e3d6;
+  --color-hover-bg: rgba(196, 97, 47, 0.04);
+  --color-table-stripe: rgba(31, 36, 33, 0.02);
+  --color-table-hover: rgba(196, 97, 47, 0.06);
+  --color-page-btn-bg: #ffffff;
+  --color-page-btn-hover-bg: #fbf9f5;
+  --color-page-btn-active: #c4612f;
+  --color-page-btn-text: #5c635d;
+  --color-page-btn-border-hover: #c4612f;
+  --color-hr: rgba(31, 36, 33, 0.1);
+  --color-sienna: #c4612f;
+  --color-button-text: #1f2421;
+  --color-page-info: #858b85;
+  --color-shadow-sm: 0 1px 3px rgba(31, 36, 33, 0.08);
+  --color-shadow-md: 0 2px 8px rgba(31, 36, 33, 0.1);
+  --color-shadow-lg: 0 4px 16px rgba(31, 36, 33, 0.12);
+}
+
+/* ── Dark Theme ── */
+[data-theme='dark'] {
+  --color-bg: #1a1a1a;
+  --color-surface: #212121;
   --color-card: #2a2a2a;
-  --color-text: rgb(224, 237, 94);
-  --color-text-secondary: rgb(204, 204, 204);
-  --color-text-muted: rgb(102, 102, 102);
-  --color-text-muted-light: rgb(136, 136, 136);
-  --color-border: rgb(68, 68, 68);
-  --color-accent: rgb(224, 237, 94);
+  --color-text: #e0ed5e;
+  --color-text-secondary: #cccccc;
+  --color-text-muted: #888888;
+  --color-text-muted-light: #666666;
+  --color-border: #444444;
+  --color-accent: #e0ed5e;
+  --color-accent-hover: #d4e24f;
+  --color-accent-light: rgba(224, 237, 94, 0.12);
   --color-hover-bg: rgba(255, 255, 255, 0.05);
   --color-table-stripe: rgba(255, 255, 255, 0.03);
   --color-table-hover: rgba(224, 237, 94, 0.08);
-  --color-page-btn-bg: rgb(26, 26, 26);
-  --color-page-btn-hover-bg: rgb(45, 45, 45);
-  --color-page-btn-active: rgb(200, 60, 60);
-  --color-page-btn-text: rgb(204, 204, 204);
-  --color-page-btn-border-hover: rgb(102, 102, 102);
+  --color-page-btn-bg: #2a2a2a;
+  --color-page-btn-hover-bg: #333333;
+  --color-page-btn-active: #c83c3c;
+  --color-page-btn-text: #cccccc;
+  --color-page-btn-border-hover: #666666;
   --color-hr: rgba(255, 255, 255, 0.1);
   --color-sienna: #cd853f;
   --color-button-text: white;
-  --color-page-info: rgb(136, 136, 136);
+  --color-page-info: #888888;
+  --color-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --color-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --color-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
+/* ── Global Styles ── */
 img::selection {
   background: transparent;
 }
@@ -38,6 +75,9 @@ body {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 iframe {
@@ -51,40 +91,60 @@ hr {
   margin: 1rem 0;
 }
 
+/* ── Introduction Card ── */
 ._statForType_1nqem_9 {
   margin-top: 1rem;
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-accent);
-  border-radius: 0 1rem 1rem 0;
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--color-shadow-md);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  line-height: 1.7;
 }
 
 ._statForType_1nqem_9:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 4px 16px rgba(224, 237, 94, 0.08);
+  border-left-color: var(--color-accent-hover);
+  box-shadow: var(--color-shadow-lg);
+  transform: translateX(2px);
+}
+
+._statForType_1nqem_9 p {
+  color: var(--color-text-secondary);
 }
 
 ._difuni_div {
-  color: #17c0ec;
+  color: var(--color-accent);
   cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+._difuni_div:hover {
+  opacity: 0.8;
 }
 
 section .w-full.pb-2 {
   cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+section .w-full.pb-2:hover {
+  background-color: var(--color-hover-bg);
 }
 
 #allDiv section .w-full.pb-2 {
   cursor: default;
 }
 
-._b_corSienna {
-  color: var(--color-sienna);
+#allDiv section .w-full.pb-2:hover {
+  background-color: transparent;
 }
 
-hr {
-  margin-top: 10px;
-  margin-bottom: 0px;
+._b_corSienna {
+  color: var(--color-sienna);
+  font-weight: 600;
 }

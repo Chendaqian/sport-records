@@ -22,11 +22,20 @@
   margin-top: 0.1rem;
   font-size: 1rem;
   text-align: center;
-  color: var(--color-button-text);
+  color: var(--color-text-secondary);
+  transition:
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.button:hover {
+  color: var(--color-accent);
+  transform: scale(1.05);
 }
 
 .selected {
   color: var(--color-accent);
+  font-weight: 600;
 }
 
 .runTitle {
@@ -36,6 +45,11 @@
   bottom: 0px;
   left: 120px;
   cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.runTitle:hover {
+  opacity: 0.8;
 }
 
 .lights {
@@ -45,6 +59,11 @@
   opacity: 0.3;
   width: 29px;
   height: 38px;
+  transition: opacity 0.2s ease;
+}
+
+.lights:hover {
+  opacity: 0.6;
 }
 
 .lightsOn {
