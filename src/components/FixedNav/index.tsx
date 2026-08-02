@@ -11,7 +11,7 @@ const FixedNav = ({ sidebarVisible, onToggle }: FixedNavProps) => {
   const isToggleMode = !!onToggle;
 
   const btnClass =
-    'fixed left-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-theme-border bg-theme-card text-theme-accent shadow-md transition-all duration-200 hover:border-theme-accent hover:shadow-lg hover:scale-105';
+    'fixed left-8 z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-theme-border bg-theme-card text-theme-accent shadow-md transition-all duration-200 hover:border-theme-accent hover:shadow-lg hover:scale-105';
 
   return (
     <>
