@@ -53,7 +53,7 @@ const RunMap = ({
   const { countries, provinces } = useActivities();
   const mapRef = useRef<MapRef>();
   const [lights, setLights] = useState(PRIVACY_MODE ? false : LIGHTS_ON);
-  const keepWhenLightsOff = ['runs2'];
+  const keepWhenLightsOff = ['runs2', 'background'];
 
   useEffect(() => {
     if (resizeTrigger !== undefined && mapRef.current) {
