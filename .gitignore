@@ -29,3 +29,5 @@ logs/
 
 # Python cache directories
 __pycache__/
+/.playwright-mcp/*.log
+/.playwright-mcp
