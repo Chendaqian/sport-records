@@ -1032,8 +1032,8 @@ Just enjoy it~
 
 <a href="https://www.star-history.com/?repos=Chendaqian%2Fsport-records&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&theme=dark&legend=top-left&sealed_token=a9CM5QzrwT2jCY7pjeLjAzGP60MMRDxdKEVSwgaLIUvUnYYEK5maWmTyC1g9oFmh1m8LIuEfzS735emO1l8SE1Zs--sDQeDwW0Ka9R0VsHCAyG4SY7F8TKvsdvhOgwECLDh2VxUxATz1eR_Hk4tud3mwLtJtubfKWNwB8atAc9FA91OxKboQfcFrYYEz" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&legend=top-left&sealed_token=a9CM5QzrwT2jCY7pjeLjAzGP60MMRDxdKEVSwgaLIUvUnYYEK5maWmTyC1g9oFmh1m8LIuEfzS735emO1l8SE1Zs--sDQeDwW0Ka9R0VsHCAyG4SY7F8TKvsdvhOgwECLDh2VxUxATz1eR_Hk4tud3mwLtJtubfKWNwB8atAc9FA91OxKboQfcFrYYEz" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Chendaqian/sport-records&type=date&legend=top-left&sealed_token=a9CM5QzrwT2jCY7pjeLjAzGP60MMRDxdKEVSwgaLIUvUnYYEK5maWmTyC1g9oFmh1m8LIuEfzS735emO1l8SE1Zs--sDQeDwW0Ka9R0VsHCAyG4SY7F8TKvsdvhOgwECLDh2VxUxATz1eR_Hk4tud3mwLtJtubfKWNwB8atAc9FA91OxKboQfcFrYYEz" />
  </picture>
 </a>
