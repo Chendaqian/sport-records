@@ -1,6 +1,5 @@
 import datetime
-import random
-import string
+import os
 import time
 
 import geopy
@@ -12,15 +11,36 @@ from sqlalchemy.orm import sessionmaker
 Base = declarative_base()
 
 
-# random user name 8 letters
-def randomword():
-    letters = string.ascii_lowercase
-    return "".join(random.choice(letters) for i in range(4))
+# Nominatim 使用政策要求可识别的 User-Agent, 且请求频率不得超过 1 次/秒。
+# 原实现每次进程启动生成 4 字母随机 UA 且完全不限速, 批量同步时必被限流,
+# 而 location_country 只在新建记录时算一次, 一旦失败就会永久留空。
+NOMINATIM_USER_AGENT = os.getenv(
+    "NOMINATIM_UA",
+    "running_page (https://github.com/Chendaqian/sport-records)",
+)
+NOMINATIM_MIN_INTERVAL = 1.1
 
-
-geopy.geocoders.options.default_user_agent = "my-application"
+geopy.geocoders.options.default_user_agent = NOMINATIM_USER_AGENT
 # reverse the location (lan, lon) -> location detail
-g = Nominatim(user_agent=randomword())
+g = Nominatim(user_agent=NOMINATIM_USER_AGENT, timeout=10)
+
+_last_geocode_at = 0.0
+
+
+def reverse_geocode(lat, lon, retries=2):
+    """限速调用 Nominatim 反向地理编码, 失败返回空字符串而不抛异常"""
+    global _last_geocode_at
+    for attempt in range(retries):
+        wait = NOMINATIM_MIN_INTERVAL - (time.time() - _last_geocode_at)
+        if wait > 0:
+            time.sleep(wait)
+        _last_geocode_at = time.time()
+        try:
+            result = g.reverse(f"{lat}, {lon}", language="zh-CN")
+            return str(result) if result else ""
+        except Exception as e:
+            print(f"reverse geocode {lat},{lon} 第 {attempt + 1}/{retries} 次失败: {e}")
+    return ""
 
 
 ACTIVITY_KEYS = [
@@ -81,23 +101,7 @@ def update_or_create_activity(session, run_activity):
             location_country = getattr(run_activity, "location_country", "")
             # or China for #176 to fix
             if not location_country and start_point or location_country == "China":
-                try:
-                    location_country = str(
-                        g.reverse(
-                            f"{start_point.lat}, {start_point.lon}", language="zh-CN"
-                        )
-                    )
-                # limit (only for the first time)
-                except Exception as e:
-                    try:
-                        location_country = str(
-                            g.reverse(
-                                f"{start_point.lat}, {start_point.lon}",
-                                language="zh-CN",
-                            )
-                        )
-                    except Exception as e:
-                        pass
+                location_country = reverse_geocode(start_point.lat, start_point.lon)
 
             activity = Activity(
                 run_id=run_activity.id,

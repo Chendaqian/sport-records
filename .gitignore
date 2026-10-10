@@ -31,3 +31,7 @@ logs/
 __pycache__/
 /.playwright-mcp/*.log
 /.playwright-mcp
+
+# garmin_sync_cn_global.py 生成的本地同步状态缓存,
+# 当前 RUN_TYPE=garmin_cn 不使用; 且其中可能把下载失败的 ID 标记为已同步
+synced_activity.json

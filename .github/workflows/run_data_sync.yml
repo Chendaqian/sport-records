@@ -13,21 +13,14 @@ on:
   push:
     branches:
       - main
+    # 只匹配代码路径。刻意排除 run_page/data.db 与 src/static/activities.json,
+    # 否则本 workflow 自己提交的数据会再次触发 push, 形成无限循环。
     paths:
-      - run_page/nike_sync.py
-      - run_page/nike_to_strava_sync.py
-      - run_page/strava_sync.py
-      - run_page/gen_svg.py
-      - run_page/garmin_sync.py
-      - run_page/coros_sync.py
-      - run_page/keep_sync.py
-      - run_page/gpx_sync.py
-      - run_page/tcx_sync.py
-      - run_page/tcx_to_garmin_sync.py
-      - run_page/garmin_to_strava_sync.py
-      - run_page/keep_to_strava_sync.py
-      - run_page/oppo_sync.py
+      - run_page/*.py
+      - run_page/generator/**
+      - run_page/gpxtrackposter/**
       - requirements.txt
+      - .github/workflows/run_data_sync.yml
 
 env:
   # please change to your own config.
@@ -207,6 +200,13 @@ jobs:
             python run_page/oppo_sync.py ${{ secrets.OPPO_ID }} ${{ secrets.OPPO_CLIENT_SECRET }} ${{ secrets.OPPO_CLIENT_REFRESH_TOKEN }} --with-tcx
         # If you want to sync fit activity in gpx format, please consider the following script:
         # python run_page/oppo_sync.py ${{ secrets.OPPO_ID }} ${{ secrets.OPPO_CLIENT_SECRET }} ${{ secrets.OPPO_CLIENT_REFRESH_TOKEN }} --with-gpx
+
+      # location_country 只在新建记录时算一次, 被 Nominatim 限流后会永久留空,
+      # 导致前端城市/省份统计缺失。此步限速补算, 幂等, 无空值时秒退。
+      - name: Fill missing location_country
+        if: env.RUN_TYPE != 'pass'
+        run: |
+          python run_page/fix_missing_location.py
 
       - name: Make svg GitHub profile
         if: env.RUN_TYPE != 'pass'

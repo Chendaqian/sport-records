@@ -58,6 +58,9 @@ ACTIVITY_TYPE_MAP = {
     "breathwork": "Workout",
     "strength_training": "Workout",
     "yoga": "Workout",
+    # Garmin 对手动上传的第三方 GPX(如行者)统一标为 other;
+    # 本仓库这类数据均为骑行, 且前端 const.ts 不识别 other
+    "other": "Ride",
 }
 
 # 第三方 App(如行者骑行软件)导入 Garmin 的 GPX 不带 <type> 标签,
