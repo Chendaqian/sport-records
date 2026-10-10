@@ -1,4 +1,4 @@
-"""补全 activities 表中 location_country 为空的记录。
+"""补全 activities 表中 location_country 为空的记录, 并重新导出 activities.json。
 
 location_country 只在新建记录时计算一次(见 generator/db.py 的
 update_or_create_activity), 一旦被 Nominatim 限流就会永久留空,
@@ -7,10 +7,28 @@ update_or_create_activity), 一旦被 Nominatim 限流就会永久留空,
 本脚本按 1 req/s 限速补算, 幂等, 可在 CI 中每次同步后重复执行。
 """
 
+import json
+
 import polyline
 
-from config import SQL_FILE
+from config import JSON_FILE, SQL_FILE
+from generator import Generator
 from generator.db import Activity, init_db, reverse_geocode
+
+
+def export_activities_json():
+    """从 data.db 重新导出 activities.json。
+
+    必须做: activities.json 由同步步骤生成, 早于本脚本执行,
+    不重新导出就会漏掉刚补上的 location_country。
+    Generator.load() 只读 DB 并套用 IGNORE_POLYLINE 隐私裁剪,
+    不发起任何网络请求。
+    """
+    generator = Generator(SQL_FILE)
+    activities = generator.load()
+    with open(JSON_FILE, "w") as f:
+        json.dump(activities, f)
+    print(f"regenerated {JSON_FILE}: {len(activities)} activities")
 
 
 def main():
@@ -26,9 +44,6 @@ def main():
             .all()
         )
         print(f"{len(rows)} activities missing location_country")
-        if not rows:
-            return
-
         fixed = 0
         for a in rows:
             points = polyline.decode(a.summary_polyline) if a.summary_polyline else []
@@ -46,6 +61,8 @@ def main():
         print(f"fixed {fixed}/{len(rows)}")
     finally:
         session.close()
+
+    export_activities_json()
 
 
 if __name__ == "__main__":
