@@ -97,7 +97,7 @@ class Garmin:
                     "Exception occurred during data retrieval - perhaps session expired - trying relogin: %s"
                     % err
                 )
-                await self.fetch_data(url, retrying=True)
+                return await self.fetch_data(url, retrying=True)
 
     async def get_activities(self, start, limit):
         """

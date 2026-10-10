@@ -34,6 +34,43 @@ IGNORE_BEFORE_SAVING = os.getenv("IGNORE_BEFORE_SAVING", False)
 # So dividing latitude and longitude (int32) value by 11930465 will give the decimal value.
 SEMICIRCLE = 11930465
 
+# GPX/FIT 的原始运动类型 -> 前端 src/utils/const.ts 使用的类型字符串
+ACTIVITY_TYPE_MAP = {
+    "road_biking": "Ride",
+    "cycling": "Ride",
+    "mountain_biking": "Ride",
+    "gravel_cycling": "Ride",
+    "indoor_cycling": "Indoor Ride",
+    "virtual_ride": "VirtualRide",
+    "running": "Run",
+    "street_running": "Run",
+    "trail_running": "Trail Running",
+    "hiking": "Hike",
+    "mountaineering": "Hike",
+    "walking": "Walk",
+    "lap_swimming": "Swim",
+    "open_water_swimming": "Swim",
+    "backcountry_skiing": "BackcountrySki",
+    "downhill_skiing": "Ski",
+    "snowboarding": "Snowboard",
+    "rowing": "Rowing",
+    "kayaking": "Kayaking",
+    "breathwork": "Workout",
+    "strength_training": "Workout",
+    "yoga": "Workout",
+}
+
+# 第三方 App(如行者骑行软件)导入 Garmin 的 GPX 不带 <type> 标签,
+# 本仓库这类数据全部为骑行, 故缺失时按 Ride 处理
+DEFAULT_GPX_TYPE = "Ride"
+
+
+def map_activity_type(raw_type):
+    """把 GPX/FIT 的原始类型映射成前端使用的类型字符串, 未知类型原样返回"""
+    if not raw_type:
+        return DEFAULT_GPX_TYPE
+    return ACTIVITY_TYPE_MAP.get(raw_type.strip().lower(), raw_type)
+
 
 class Track:
     def __init__(self):
@@ -51,6 +88,7 @@ class Track:
         self.run_id = 0
         self.start_latlng = []
         self.type = "Run"
+        self.name = ""
 
     def load_gpx(self, file_name):
         """
@@ -175,12 +213,15 @@ class Track:
 
     def _load_gpx_data(self, gpx):
         self.start_time, self.end_time = gpx.get_time_bounds()
-        # use timestamp as id
-        self.run_id = self.__make_run_id(self.start_time)
         if self.start_time is None:
             raise TrackLoadError("Track has no start time.")
         if self.end_time is None:
             raise TrackLoadError("Track has no end time.")
+        # use timestamp as id
+        self.run_id = self.__make_run_id(self.start_time)
+        if gpx.tracks:
+            self.name = gpx.tracks[0].name or ""
+            self.type = gpx.tracks[0].type or ""
         self.length = gpx.length_2d()
         if self.length == 0:
             raise TrackLoadError("Track is empty.")
@@ -322,8 +363,8 @@ class Track:
     def to_namedtuple(self):
         d = {
             "id": self.run_id,
-            "name": "run from gpx",  # maybe change later
-            "type": "Run",  # Run for now only support run for now maybe change later
+            "name": self.name or "run from gpx",
+            "type": map_activity_type(self.type),
             "start_date": self.start_time.strftime("%Y-%m-%d %H:%M:%S"),
             "end": self.end_time.strftime("%Y-%m-%d %H:%M:%S"),
             "start_date_local": self.start_time_local.strftime("%Y-%m-%d %H:%M:%S"),
